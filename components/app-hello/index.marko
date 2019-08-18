@@ -1,36 +1,22 @@
 class {
-  onCreate() {
-    this.state = {
-      count: 0
+    onCreate() {
+        this.state = {
+            count: 0
+        };
     }
-  }
 
-  onMount() {
-    console.log('Mounted in the browser!');
-  }
-
-  increment() {
-    this.state.count++;
-  }
-}
-
-style {
-    .count {
-        color:#09c;
-        font-size:3em;
+    onMount() {
+        console.log("Mounted in the browser!");
     }
-    .example-button {
-        font-size:1em;
-        padding:0.5em;
+
+    increment() {
+        this.state.count++;
     }
 }
 
-<p>Hello ${input.name}</p>
-
-<div.count>
-  ${state.count}
+<div class="box">
+    <p.title>Hello ${input.name}</p>
+    <div.count>${state.count}
+    </div>
+    <button.example-button type="button" on-click('increment')>Click me</button>
 </div>
-
-<button.example-button type="button" on-click('increment')>
-  Click me
-</button>

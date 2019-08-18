@@ -1,7 +1,5 @@
-Sample App: Marko + Express
+Cortex: Marko + Express + Johnny-five + Bulma
 ======================================
-
-This sample app illustrates how to integrate Marko with a very basic Express app. For this sample app, we use the streaming API to stream the output of the template rendering to the HTTP response stream. In addition, this sample application illustrates how to create custom tags that can be embedded into your templates.
 
 # Installation
 
