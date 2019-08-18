@@ -11,10 +11,15 @@
 
 <body>
   <app-menu-bar />
-    <app-hello name=data.name />
-    You have ${data.count} new messages!
 
-    <if(data.colors && data.colors.length)>
+
+
+  <app-hello name=data.name />
+  <app-hud-display></app-hud-display>
+
+    <!-- You have ${data.count} new messages! -->
+
+    <!-- <if(data.colors && data.colors.length)>
       <ul>
       <for|color, index| of=data.colors>
         <li style=`color: ${color}`>${color}</li>
@@ -23,7 +28,7 @@
     </if>
     <else>
         <div>No colors!</div>
-    </else>
+    </else> -->
 
   <lasso-body />
 
