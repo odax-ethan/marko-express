@@ -1,0 +1,22 @@
+class {
+    onCreate() {
+        this.state = {
+            count: 0
+        };
+    }
+
+    onMount() {
+        console.log("Mounted in the browser!");
+    }
+
+    increment() {
+        this.state.count++;
+    }
+}
+
+<div class="box">
+    <p.title>Hello ${input.name}</p>
+    <div.count>${state.count}
+    </div>
+    <button.example-button type="button" on-click('increment')>Click me</button>
+</div>

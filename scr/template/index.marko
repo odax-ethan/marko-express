@@ -6,11 +6,16 @@
 <head>
   <meta charset="UTF-8" />
   <title>marko-express</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js'></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <lasso-head />
 </head>
 
 <body>
-  <app-menu-bar />
+  <!-- <app-menu-bar /> -->
+<app-menu-bar-1  name=data.name />
+  <!-- <br/> -->
+  <!-- <app-hud-hero /> -->
   <!-- <app-hello name=data.name /> -->
   <app-hud-display></app-hud-display>
 
@@ -23,5 +28,4 @@
     -->
   <browser-refresh />
 </body>
-
 </html>

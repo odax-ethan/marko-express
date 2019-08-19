@@ -2,7 +2,9 @@ require('marko/node-require');
 
 const ip = require('ip'); // include ip
 const express = require('express');
-var five = require("johnny-five");
+const five = require("johnny-five");
+const ioBASE = require('socket.io');
+const EventEmitter = require('events');
 
 const markoPress = require('marko/express'); //enable res.marko
 const lassoWare = require('lasso/middleware');
@@ -42,13 +44,31 @@ app.get('/', function (req, res) {
     });
 });
 
-app.listen(port, hostIP, function () {
+const systemSERVER = app.listen(port, hostIP, function () {
     console.log('Server started! Try it out:\nhttp://'+ systemIP+':' + port + '/');
     if (process.send) {
         process.send('online');
     }
 });
 
+
+
+
+
+
+const io = ioBASE(systemSERVER) // create socket.io sever systems
+io.on('connection', function (socket) {
+         console.log("client has connected");
+
+         ledEmitter.on('led-update', (x) => {
+           console.log(`led state is ${x}`);
+           socket.emit('ledSTATE',  x );
+         })
+
+         socket.on('disconnect', function(){
+            console.log('user disconnected');
+         });
+});
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -75,16 +95,33 @@ board.on("ready", function() {
    // Allow limited on/off control access to the
    // Led instance from the REPL.
    on: function() {
+
      led.on();
-     ledSTATE = 1
+     ledEmitter.emit('led-on')
    },
    off: function() {
      led.off();
-     ledSTATE = 2
+     ledEmitter.emit('led-off')
    }
  });
 
 });
+
+class MyEmitter extends EventEmitter {}
+
+const ledEmitter = new MyEmitter();
+ledEmitter.on('led-on', () => {
+  console.log('led state is on');
+  ledSTATE = 1
+  ledEmitter.emit('led-update', ledSTATE)
+})
+
+ledEmitter.on('led-off', () => {
+  console.log('led state is off');
+  ledSTATE = 0
+  ledEmitter.emit('led-update', ledSTATE)
+})
+
 
 
 

@@ -10,27 +10,19 @@ npm install
 node server.js
 ```
 
-Navigate to [http://localhost:8080/](http://localhost:8080/) to see your server in action!
-
 # Project Structure
 
 ```
 .
 ├── components - Directory containing custom tag implementations
-│   ├── app-button - Custom tag for rendering a Bootstrap-styled button
-│   │   ├── renderer.js
+│   ├── app-hud-display -
 │   │   └── template.marko
-│   ├── app-header - Custom tag for rendering the page header (template only)
-│   │   └── template.marko
-│   └── app-hello - Custom tag rendering a simple message (JavaScript renderer only)
+│   └── a-example -
 │       └── renderer.js
-├── footer.marko - An include target
-├── index.marko - The page template
 ├── package.json - npm metadata
 ├── marko-taglib.json - Marko taglib used to discover custom tags
-├── server.js - JavaScript entry point for this application
+├── Cortex.js - JavaScript entry point for this application
 └── static - Folder containing static JavaScript and CSS files
-    ├── reset.css
     └── style.css
 ```
 
