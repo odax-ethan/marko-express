@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <div#hudDisplay class="box">
     <nav class="breadcrumb is-right" aria-label="breadcrumbs">
         <ul>
@@ -17,7 +12,7 @@
     </nav>
     <div class="tile is-ancestor">
         <div class="tile is-parent">
-            <div id='ledSTATE' class="tile is-child box has-background-grey-light">
+            <div id='STATE' class="tile is-child box has-background-grey-light">
 
             </div>
         </div>
@@ -32,17 +27,17 @@
     </div>
 </div>
 
-
 <script>
+ var device = ${ input.device }
  var socket = io();
-  socket.on('ledSTATE', function (data) {
+  socket.on(device, function (data) {
   console.log(data);
   if (data===1) {
-    var element = document.getElementById("ledSTATE");
+    var element = document.getElementById("STATE");
     element.classList.toggle("has-background-grey-light");
     element.classList.toggle("has-background-success");
   }else {
-    var element = document.getElementById("ledSTATE");
+    var element = document.getElementById("STATE");
     element.classList.toggle("has-background-grey-light");
     element.classList.toggle("has-background-success");
   }

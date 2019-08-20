@@ -19,7 +19,7 @@
         <div class="tile  is-parent">
             <div class="tile  is-child box">
 
-                <p.stitle>45<span.is-size-7>&#8451;</span></p>
+                <p.stitle#tempSTATE></p>
                 <p class="subtitle">Temp</p>
             </div>
         </div>
@@ -34,3 +34,12 @@
         </div>
     </div>
 </div>
+
+<script>
+  var device = ${ input.device }
+  var socket = io();
+   socket.on(device, function (data) {
+   console.log(data);
+   document.getElementById("tempSTATE").innerText = data;
+ })
+</script>

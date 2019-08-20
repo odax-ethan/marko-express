@@ -5,10 +5,12 @@ const express = require('express');
 const five = require("johnny-five");
 const ioBASE = require('socket.io');
 const EventEmitter = require('events');
-
 const markoPress = require('marko/express'); //enable res.marko
 const lassoWare = require('lasso/middleware');
-const indexTemplate = require('./scr/template/index.marko');
+
+const indexTemplate = require('./scr/template/index.marko'); // marko base template
+const systemConfig = require(__dirname +'/scr/data/systemConfig/systemConfig'); //cortex systemConfig
+const {System} = require(__dirname +'/scr/core/core-0-0-1.js'); //cortex support components
 
 
 const systemIP  = ip.address();
@@ -36,6 +38,7 @@ app.use(lassoWare.serveStatic());
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 var ledSTATE = null
+var sensorSTATE = null
 
 app.get('/', function (req, res) {
     res.marko(indexTemplate, {
@@ -61,8 +64,13 @@ io.on('connection', function (socket) {
          console.log("client has connected");
 
          ledEmitter.on('led-update', (x) => {
-           console.log(`led state is ${x}`);
+           // console.log(`led state is ${x}`);
            socket.emit('ledSTATE',  x );
+         })
+
+         sensorEmitter.on('sensor-update', (x) => {
+           // console.log(`sensor state is ${x}`);
+           socket.emit('sensorSTATE',  x );
          })
 
          socket.on('disconnect', function(){
@@ -81,12 +89,6 @@ var board = new five.Board({
 // the board has reported that it is ready
 board.on("ready", function() {
 
-  // this.pinMode(13, this.MODES.OUTPUT);
-  //
-  // this.loop(500, () => {
-  //   // Whatever the last value was, write the opposite
-  //   this.digitalWrite(13, this.pins[13].value ? 0 : 1);
-  // });
 
   // Create a standard `led` component instance
   var led = new five.Led(13);
@@ -104,6 +106,22 @@ board.on("ready", function() {
      ledEmitter.emit('led-off')
    }
  });
+
+
+ var thermometer = new five.Thermometer({
+   controller: "DS18B20",
+   pin: 6,
+   freq: 15000
+ });
+
+ thermometer.on("change", function() {
+   // console.log(this.celsius + "°C");
+
+   sensorEmitter.emit('change', this.celsius);
+   // console.log("0x" + this.address.toString(16));
+ });
+
+
 
 });
 
@@ -123,7 +141,12 @@ ledEmitter.on('led-off', () => {
 })
 
 
+const sensorEmitter = new MyEmitter();
 
+sensorEmitter.on('change', (data) => {
+  let newDATA = data
+  sensorEmitter.emit('sensor-update', newDATA)
+})
 
 
 
