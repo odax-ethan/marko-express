@@ -39,7 +39,7 @@
   var device = ${ input.device }
   var socket = io();
    socket.on(device, function (data) {
-   console.log(data);
+   // console.log(data);
    document.getElementById("tempSTATE").innerText = data;
  })
 </script>
