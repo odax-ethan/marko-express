@@ -1,0 +1,92 @@
+
+
+<div class="box">
+
+<div class="columns is-desktop">
+  <div#col0 class="column">
+  </div>
+  <div#col1 class="column">
+
+  </div>
+  <div#col2 class="column">
+
+  </div>
+  <div#col3 class="column">
+
+  </div>
+</div>
+
+<div class="columns is-desktop">
+  <div class="column">
+
+  </div>
+  <div class="column">
+
+  </div>
+  <div class="column">
+
+  </div>
+  <div class="column">
+
+  </div>
+</div>
+
+</div>
+
+<script>
+ var socket = io();
+  socket.on('deviceLIST', function (data) {
+  console.log(data);
+
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].type === 'led' ) {
+      let htmlCARRIER = `
+      <div#hudDisplay class="box">
+          <nav class="breadcrumb is-right" aria-label="breadcrumbs">
+              <ul>
+                  <li>
+                      <a href="#">${data[i].id}</a>
+                  </li>
+                  <li class="is-active">
+                      <a href="#" aria-current="page">Node1</a>
+                  </li>
+              </ul>
+          </nav>
+          <div class="tile is-ancestor">
+              <div class="tile is-parent">
+                  <div id='STATE' class="tile is-child box has-background-grey-light">
+
+                  </div>
+              </div>
+              <div class="tile  is-vertical is-parent">
+                  <div class="tile is-child box">
+
+                  </div>
+                  <div class="tile is-child box">
+
+                  </div>
+              </div>
+          </div>
+      </div>
+      `
+
+      document.getElementById(`col${i}`).innerHTML = htmlCARRIER
+    }
+  }
+});
+
+
+socket.on('ledSTATE', function (data) {
+console.log(data);
+if (data===1) {
+  var element = document.getElementById("STATE");
+  element.classList.toggle("has-background-grey-light");
+  element.classList.toggle("has-background-success");
+}else {
+  var element = document.getElementById("STATE");
+  element.classList.toggle("has-background-grey-light");
+  element.classList.toggle("has-background-success");
+}
+// document.getElementById("ledSTATE").innerText = data;
+});
+</script>

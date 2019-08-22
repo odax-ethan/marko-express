@@ -111,7 +111,6 @@ io.on('connection', function (socket) {
          socket.emit('deviceLIST', deviceLIST )
 
 
-
          socket.on('disconnect', function(){
             console.log('user disconnected');
          });

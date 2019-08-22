@@ -1,13 +1,18 @@
+
+<app-hud-display-led device="'ledSTATE'" />
+<app-hud-display-temp device="'sensorSTATE'"/>
+
+<!--
 <div class="box">
 
 <div class="columns is-desktop">
   <div#col0 class="column">
   </div>
   <div#col1 class="column">
-    <!-- <app-hud-display-led device="'ledSTATE'" /> -->
+
   </div>
   <div#col2 class="column">
-     <!-- <app-hud-display-temp device="'sensorSTATE'"/> -->
+
   </div>
   <div#col3 class="column">
 
@@ -32,18 +37,4 @@
 </div>
 
 
-
-<script>
- var socket = io();
-  socket.on('deviceLIST', function (data) {
-  console.log(data);
-
-  for (var i = 0; i < data.length; i++) {
-    if (data[i].type === 'led' ) {
-      document.getElementById(`col${i}`).innerHTML = '<app-hud-display-led device="'ledSTATE'"></app-hud-display-led'
-    }
-  }
-
-  // document.getElementById("ledSTATE").innerText = data;
-  });
-</script>
+-->
