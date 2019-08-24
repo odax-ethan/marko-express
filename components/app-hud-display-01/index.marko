@@ -1,38 +1,17 @@
-
-
 <div class="box">
-
-<div class="columns is-desktop">
-  <div#col0 class="column">
-  </div>
-  <div#col1 class="column">
-
-  </div>
-  <div#col2 class="column">
-
-  </div>
-  <div#col3 class="column">
-
-  </div>
+    <div class="columns is-desktop">
+        <div#col0 class="column"/>
+        <div#col1 class="column"/>
+        <div#col2 class="column"/>
+        <div#col3 class="column"/>
+    </div>
+    <div class="columns is-desktop">
+        <div class="column"/>
+        <div class="column"/>
+        <div class="column"/>
+        <div class="column"/>
+    </div>
 </div>
-
-<div class="columns is-desktop">
-  <div class="column">
-
-  </div>
-  <div class="column">
-
-  </div>
-  <div class="column">
-
-  </div>
-  <div class="column">
-
-  </div>
-</div>
-
-</div>
-
 <script>
  var socket = io();
   socket.on('deviceLIST', function (data) {
@@ -40,8 +19,9 @@
 
   for (var i = 0; i < data.length; i++) {
     if (data[i].type === 'led' ) {
+
       let htmlCARRIER = `
-      <div#hudDisplay class="box">
+      <div#hudDisplay#${data[i].id} class="box">
           <nav class="breadcrumb is-right" aria-label="breadcrumbs">
               <ul>
                   <li>
@@ -60,7 +40,6 @@
               </div>
               <div class="tile  is-vertical is-parent">
                   <div class="tile is-child box">
-
                   </div>
                   <div class="tile is-child box">
 
@@ -69,9 +48,72 @@
           </div>
       </div>
       `
-
       document.getElementById(`col${i}`).innerHTML = htmlCARRIER
-    }
+    }  if (data[i].type === 'thermometer' ) {
+
+        let htmlCARRIER = `
+        <div#hudDisplay#${data[i].id} class="box">
+            <nav class="breadcrumb is-right" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <a href="#">Veg Tent Temp Probe</a>
+                    </li>
+                    <li class="is-active">
+                        <a href="#" aria-current="page">Node1</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="tile is-ancestor">
+                <div class="tile  is-parent">
+                    <div class="tile  is-child box">
+                        <div id='tempstate' ></div>
+                    </div>
+                </div>
+                <div class="tile  is-vertical is-parent">
+                    <div class="tile is-child box">
+                        <p class="subtitle">Rising</p>
+                    </div>
+                    <div class="tile is-child box">
+                        <p.title>45<span.is-size-7>&#8451;</span></p>
+                        <p class="subtitle">24h Avg.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        document.getElementById(`col${i}`).innerHTML = htmlCARRIER
+      } if (data[i].type === 'relay' ) {
+
+        let htmlCARRIER = `
+        <div#hudDisplay#${data[i].id} class="box">
+            <nav class="breadcrumb is-right" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <a href="#">${data[i].id}</a>
+                    </li>
+                    <li class="is-active">
+                        <a href="#" aria-current="page">Node1</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="tile is-ancestor">
+                <div class="tile is-parent">
+                    <div id='STATE' class="tile is-child box has-background-grey-light">
+
+                    </div>
+                </div>
+                <div class="tile  is-vertical is-parent">
+                    <div class="tile is-child box">
+                    </div>
+                    <div class="tile is-child box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        document.getElementById(`col${i}`).innerHTML = htmlCARRIER
+      }
   }
 });
 
@@ -88,5 +130,16 @@ if (data===1) {
   element.classList.toggle("has-background-success");
 }
 // document.getElementById("ledSTATE").innerText = data;
+
 });
+
+socket.on('sensorSTATE', function (data) {
+ //console.log(data);
+document.getElementById("tempstate").innerText = data
+//element.innerText = data;
+});
+
+
+
+
 </script>

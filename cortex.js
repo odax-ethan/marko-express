@@ -54,8 +54,8 @@ let deviceLIST = []
 for (var i = 0; i < nodes.length; i++) {
   nodeIDs.push(nodes[i].nodeName)
 }
-// console.log(nodeIDs);
-// console.log(deviceBank);
+console.log(nodeIDs);
+console.log(deviceBank);
 // console.log(nodeIDs[0]);
 let ledARRAY = []
 for (var i = 0; i < deviceBank.length; i++) {
@@ -66,8 +66,9 @@ for (var i = 0; i < deviceBank.length; i++) {
         deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
         ledARRAY.push(deviceBank[i].devicePIN)
       }else if (deviceBank[i].deviceTYPE === 'relay') {
-        // console.log('its an relay');
+        deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
       }else if (deviceBank[i].deviceTYPE === 'thermometer') {
+        deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
         // console.log('its an Thermometer');
       }else if (deviceBank[i].deviceTYPE === 'button') {
         // console.log('its an button');
