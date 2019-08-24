@@ -31,7 +31,7 @@
  var device = ${ input.device }
  var socket = io();
   socket.on(device, function (data) {
-  console.log(data);
+  // console.log(data);
   if (data===1) {
     var element = document.getElementById("STATE");
     element.classList.toggle("has-background-grey-light");

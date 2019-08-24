@@ -1,4 +1,172 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+.mt-0 {
+  margin-top: 0px; }
+
+.pt-0 {
+  padding-top: 0px; }
+
+.ml-0 {
+  margin-left: 0px; }
+
+.pl-0 {
+  padding-left: 0px; }
+
+.mb-0 {
+  margin-bottom: 0px; }
+
+.pb-0 {
+  padding-bottom: 0px; }
+
+.mr-0 {
+  margin-right: 0px; }
+
+.pr-0 {
+  padding-right: 0px; }
+
+.mt-10 {
+  margin-top: 10px; }
+
+.pt-10 {
+  padding-top: 10px; }
+
+.ml-10 {
+  margin-left: 10px; }
+
+.pl-10 {
+  padding-left: 10px; }
+
+.mb-10 {
+  margin-bottom: 10px; }
+
+.pb-10 {
+  padding-bottom: 10px; }
+
+.mr-10 {
+  margin-right: 10px; }
+
+.pr-10 {
+  padding-right: 10px; }
+
+.mt-15 {
+  margin-top: 15px; }
+
+.pt-15 {
+  padding-top: 15px; }
+
+.ml-15 {
+  margin-left: 15px; }
+
+.pl-15 {
+  padding-left: 15px; }
+
+.mb-15 {
+  margin-bottom: 15px; }
+
+.pb-15 {
+  padding-bottom: 15px; }
+
+.mr-15 {
+  margin-right: 15px; }
+
+.pr-15 {
+  padding-right: 15px; }
+
+.mt-20 {
+  margin-top: 20px; }
+
+.pt-20 {
+  padding-top: 20px; }
+
+.ml-20 {
+  margin-left: 20px; }
+
+.pl-20 {
+  padding-left: 20px; }
+
+.mb-20 {
+  margin-bottom: 20px; }
+
+.pb-20 {
+  padding-bottom: 20px; }
+
+.mr-20 {
+  margin-right: 20px; }
+
+.pr-20 {
+  padding-right: 20px; }
+
+.mt-25 {
+  margin-top: 25px; }
+
+.pt-25 {
+  padding-top: 25px; }
+
+.ml-25 {
+  margin-left: 25px; }
+
+.pl-25 {
+  padding-left: 25px; }
+
+.mb-25 {
+  margin-bottom: 25px; }
+
+.pb-25 {
+  padding-bottom: 25px; }
+
+.mr-25 {
+  margin-right: 25px; }
+
+.pr-25 {
+  padding-right: 25px; }
+
+.mt-30 {
+  margin-top: 30px; }
+
+.pt-30 {
+  padding-top: 30px; }
+
+.ml-30 {
+  margin-left: 30px; }
+
+.pl-30 {
+  padding-left: 30px; }
+
+.mb-30 {
+  margin-bottom: 30px; }
+
+.pb-30 {
+  padding-bottom: 30px; }
+
+.mr-30 {
+  margin-right: 30px; }
+
+.pr-30 {
+  padding-right: 30px; }
+
+.mt-50 {
+  margin-top: 50px; }
+
+.pt-50 {
+  padding-top: 50px; }
+
+.ml-50 {
+  margin-left: 50px; }
+
+.pl-50 {
+  padding-left: 50px; }
+
+.mb-50 {
+  margin-bottom: 50px; }
+
+.pb-50 {
+  padding-bottom: 50px; }
+
+.mr-50 {
+  margin-right: 50px; }
+
+.pr-50 {
+  padding-right: 50px; }
+
 /*! bulma.io v0.7.5 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -391,89 +559,89 @@ table th {
   overflow: hidden !important; }
 
 .is-size-1 {
-  font-size: 3rem !important; }
+  font-size: 0 !important; }
 
 .is-size-2 {
-  font-size: 2.5rem !important; }
+  font-size: 10 !important; }
 
 .is-size-3 {
-  font-size: 2rem !important; }
+  font-size: 15 !important; }
 
 .is-size-4 {
-  font-size: 1.5rem !important; }
+  font-size: 20 !important; }
 
 .is-size-5 {
-  font-size: 1.25rem !important; }
+  font-size: 25 !important; }
 
 .is-size-6 {
-  font-size: 1rem !important; }
+  font-size: 30 !important; }
 
 .is-size-7 {
-  font-size: 0.75rem !important; }
+  font-size: 50 !important; }
 
 @media screen and (max-width: 768px) {
   .is-size-1-mobile {
-    font-size: 3rem !important; }
+    font-size: 0 !important; }
   .is-size-2-mobile {
-    font-size: 2.5rem !important; }
+    font-size: 10 !important; }
   .is-size-3-mobile {
-    font-size: 2rem !important; }
+    font-size: 15 !important; }
   .is-size-4-mobile {
-    font-size: 1.5rem !important; }
+    font-size: 20 !important; }
   .is-size-5-mobile {
-    font-size: 1.25rem !important; }
+    font-size: 25 !important; }
   .is-size-6-mobile {
-    font-size: 1rem !important; }
+    font-size: 30 !important; }
   .is-size-7-mobile {
-    font-size: 0.75rem !important; } }
+    font-size: 50 !important; } }
 
 @media screen and (min-width: 769px), print {
   .is-size-1-tablet {
-    font-size: 3rem !important; }
+    font-size: 0 !important; }
   .is-size-2-tablet {
-    font-size: 2.5rem !important; }
+    font-size: 10 !important; }
   .is-size-3-tablet {
-    font-size: 2rem !important; }
+    font-size: 15 !important; }
   .is-size-4-tablet {
-    font-size: 1.5rem !important; }
+    font-size: 20 !important; }
   .is-size-5-tablet {
-    font-size: 1.25rem !important; }
+    font-size: 25 !important; }
   .is-size-6-tablet {
-    font-size: 1rem !important; }
+    font-size: 30 !important; }
   .is-size-7-tablet {
-    font-size: 0.75rem !important; } }
+    font-size: 50 !important; } }
 
 @media screen and (max-width: 1023px) {
   .is-size-1-touch {
-    font-size: 3rem !important; }
+    font-size: 0 !important; }
   .is-size-2-touch {
-    font-size: 2.5rem !important; }
+    font-size: 10 !important; }
   .is-size-3-touch {
-    font-size: 2rem !important; }
+    font-size: 15 !important; }
   .is-size-4-touch {
-    font-size: 1.5rem !important; }
+    font-size: 20 !important; }
   .is-size-5-touch {
-    font-size: 1.25rem !important; }
+    font-size: 25 !important; }
   .is-size-6-touch {
-    font-size: 1rem !important; }
+    font-size: 30 !important; }
   .is-size-7-touch {
-    font-size: 0.75rem !important; } }
+    font-size: 50 !important; } }
 
 @media screen and (min-width: 1024px) {
   .is-size-1-desktop {
-    font-size: 3rem !important; }
+    font-size: 0 !important; }
   .is-size-2-desktop {
-    font-size: 2.5rem !important; }
+    font-size: 10 !important; }
   .is-size-3-desktop {
-    font-size: 2rem !important; }
+    font-size: 15 !important; }
   .is-size-4-desktop {
-    font-size: 1.5rem !important; }
+    font-size: 20 !important; }
   .is-size-5-desktop {
-    font-size: 1.25rem !important; }
+    font-size: 25 !important; }
   .is-size-6-desktop {
-    font-size: 1rem !important; }
+    font-size: 30 !important; }
   .is-size-7-desktop {
-    font-size: 0.75rem !important; } }
+    font-size: 50 !important; } }
 
 .has-text-centered {
   text-align: center !important; }
@@ -2496,19 +2664,19 @@ a.tag:hover {
   .title:not(.is-spaced) + .subtitle {
     margin-top: -1.25rem; }
   .title.is-1 {
-    font-size: 3rem; }
+    font-size: 0; }
   .title.is-2 {
-    font-size: 2.5rem; }
+    font-size: 10; }
   .title.is-3 {
-    font-size: 2rem; }
+    font-size: 15; }
   .title.is-4 {
-    font-size: 1.5rem; }
+    font-size: 20; }
   .title.is-5 {
-    font-size: 1.25rem; }
+    font-size: 25; }
   .title.is-6 {
-    font-size: 1rem; }
+    font-size: 30; }
   .title.is-7 {
-    font-size: 0.75rem; }
+    font-size: 50; }
 
 .subtitle {
   color: #757763;
@@ -2521,19 +2689,19 @@ a.tag:hover {
   .subtitle:not(.is-spaced) + .title {
     margin-top: -1.25rem; }
   .subtitle.is-1 {
-    font-size: 3rem; }
+    font-size: 0; }
   .subtitle.is-2 {
-    font-size: 2.5rem; }
+    font-size: 10; }
   .subtitle.is-3 {
-    font-size: 2rem; }
+    font-size: 15; }
   .subtitle.is-4 {
-    font-size: 1.5rem; }
+    font-size: 20; }
   .subtitle.is-5 {
-    font-size: 1.25rem; }
+    font-size: 25; }
   .subtitle.is-6 {
-    font-size: 1rem; }
+    font-size: 30; }
   .subtitle.is-7 {
-    font-size: 0.75rem; }
+    font-size: 50; }
 
 .heading {
   display: block;

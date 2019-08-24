@@ -1,6 +1,5 @@
-exports.config = {
-  systemSETTINGS: {
-    opperationName : "albo",
+exports.systemSETTINGS = {
+    opperationName : "GROW338",
     timerTESTrate: 150,
     nodes: [
     {  id: "A",
@@ -9,33 +8,12 @@ exports.config = {
      }
      ], // list of node for generation
     devices: [
-      { deviceID: "flightLEDbttom",deviceTYPE:"led", devicePIN: 1, actioneSTATE:"always", action:"blink", duration: 3000, node:"node1"},
-      { deviceID: "button1", deviceTYPE:"button", devicePIN: 3, actioneSTATE:"always", node:"node1" }
+      { deviceID: "red", deviceTYPE:"led", devicePIN: 13, node:"node1"},
+      { deviceID: "trigger", deviceTYPE:"button", devicePIN: 3, node:"node1" },
+      { deviceID: "fan1", deviceTYPE:"relay", devicePIN: 7, node:"node1" },
+      { deviceID: "sensor1", deviceTYPE:"thermometer", devicePIN: 6, node:"node1", controller: "DS18B20" }
+    ],
+    timers: [
+      {timmerID: 0, deviceID: 'fan1', startH : 12, startM: 30, stopH: 5, stopM:30}
     ] // list of all devices in the system
-    // ioSystem: `new Raspi()`,
-    // nodes : [
-      // {  id: "A",
-      //    portName: "COM3",
-      //    nodeName: "node1",
-      //    led : [
-      //         {deviceID: "flightLIGHTbotton" , pin : 3, : details:"main power source relay"},
-      //         {deviceID: "flightLIGHTwingTIPS" , pin : 34, details:"main power source relay"}
-      //       ],
-      //    sensor : [
-      //       {deviceID: "tempurature1" , pin : 3, type: "digital", controller: "DS18B20", freq: 10000},
-      //       {deviceID: "tempurature2" , pin : 3, type: "i2c", controller: "SI7020",  freq: 10000}
-      //     ]
-      // }
-    // ],
-    // gpio : [{
-    //   led : [
-    //        {deviceID: "flightLIGHTbotton" , pin : 3, details:"main power source relay"},
-    //        {deviceID: "flightLIGHTwingTIPS" , pin : 34, details:"main power source relay"}
-    //      ],
-    //   sensor : [
-    //      {deviceID: "tempurature1" , pin : 3, type: "digital", controller: "DS18B20", freq: 10000},
-    //      {deviceID: "tempurature2" , pin : 3, type: "i2c", controller: "SI7020",  freq: 10000}
-    //    ]
-    //  }]
-  }//end of systemSETTINGS object
 } //end of entire object
