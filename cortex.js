@@ -41,8 +41,6 @@ app.use(lassoWare.serveStatic());
 var ledSTATE = null
 var sensorSTATE = null
 
-
-
 const nodes = systemConfig.systemSETTINGS.nodes
 const deviceBank = systemConfig.systemSETTINGS.devices
 let nodeIDs = []
@@ -124,27 +122,11 @@ var board = new five.Board({
   port: "COM6"
 });
 
+let testTimer = new Timer(20,4,5,12)
+let now = new CurrentDate()
 
-/// for each board create objects that can be placed into johnny classes
-
-// console.log(ledARRAY);
-
-// let node1LEDS = system.generateDEVICEarray2('led')
-// let node1RELAYS = system.generateDEVICEarray2('relay')
-// let node1TEMPS = system.generateDEVICEarray2('thermometer')
-// let node1BUTTONS = system.generateDEVICEarray2('button')
-
-// console.log(node1LEDS);
-// console.log(node1RELAYS);
-// console.log(node1TEMPS);
-// console.log(node1BUTTONS);
-
-
-// for (var i = 0; i < node1.length; i++) {
-//   // console.log(node1[i].deviceNAME);
-//   console.log(node1[i].devicePIN);
-//
-// }
+console.log(now.timeOBJ());
+testTimer.test(now.timeOBJ())
 
 
 // The board's pins will not be accessible until
@@ -154,6 +136,30 @@ board.on("ready", function() {
 
   // Create a standard `led` component instance
   var ledTEST = new five.Leds(ledARRAY);
+
+
+
+system.looper(25000,function () {
+  if (testTimer.test(now.timeOBJ()) === 1) {
+
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   this.repl.inject({
    // Allow limited on/off control access to the
