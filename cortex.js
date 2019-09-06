@@ -36,8 +36,24 @@ const server = require('http').Server(app); // create http server instance throu
 app.use(markoPress());
 app.use(lassoWare.serveStatic());
 
+
+app.get('/', function (req, res) {
+    res.marko(indexTemplate, {
+        name: 'Frank',
+        colors: ['red', 'green', 'blue']
+    });
+});
+
+const systemSERVER = app.listen(port, hostIP, function () {
+    console.log('Server started! Try it out:\nhttp://'+ systemIP+':' + port + '/');
+    if (process.send) {
+        process.send('online');
+    }
+});
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
 var ledSTATE = null
 var sensorSTATE = null
 
@@ -46,7 +62,7 @@ const deviceBank = systemConfig.systemSETTINGS.devices
 let nodeIDs = []
 let nodeCarrier = []
 let nodeMAX = 3
-let deviceLIST = []
+let deviceLIST = []  // list of all devices parsed for used in the client
 
 
 for (var i = 0; i < nodes.length; i++) {
@@ -76,21 +92,9 @@ for (var i = 0; i < deviceBank.length; i++) {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-
-app.get('/', function (req, res) {
-    res.marko(indexTemplate, {
-        name: 'Frank',
-        colors: ['red', 'green', 'blue']
-    });
-});
-
-const systemSERVER = app.listen(port, hostIP, function () {
-    console.log('Server started! Try it out:\nhttp://'+ systemIP+':' + port + '/');
-    if (process.send) {
-        process.send('online');
-    }
-});
 
 const io = ioBASE(systemSERVER) // create socket.io sever systems
 io.on('connection', function (socket) {
@@ -122,11 +126,11 @@ var board = new five.Board({
   port: "COM6"
 });
 
-let testTimer = new Timer(20,4,5,12)
-let now = new CurrentDate()
-
-console.log(now.timeOBJ());
-testTimer.test(now.timeOBJ())
+// let testTimer = new Timer(20,4,5,12)
+// let now = new CurrentDate()
+//
+// console.log(now.timeOBJ());
+// testTimer.test(now.timeOBJ())
 
 
 // The board's pins will not be accessible until
@@ -139,40 +143,19 @@ board.on("ready", function() {
 
 
 
-system.looper(25000,function () {
-  if (testTimer.test(now.timeOBJ()) === 1) {
-
-  }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  this.repl.inject({
-   // Allow limited on/off control access to the
-   // Led instance from the REPL.
-   on: function() {
-     ledTEST.on();
-     ledEmitter.emit('led-on')
-   },
-   off: function() {
-     ledTEST.off();
-     ledEmitter.emit('led-off')
-   }
- });
+ //
+ //  this.repl.inject({
+ //   // Allow limited on/off control access to the
+ //   // Led instance from the REPL.
+ //   on: function() {
+ //     ledTEST.on();
+ //     ledEmitter.emit('led-on')
+ //   },
+ //   off: function() {
+ //     ledTEST.off();
+ //     ledEmitter.emit('led-off')
+ //   }
+ // });
 
 
  var thermometer = new five.Thermometer({

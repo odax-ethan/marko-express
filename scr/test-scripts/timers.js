@@ -19,7 +19,9 @@ class CurrentDate {
 }
 
 class Timer {
-  constructor(startH, startM, stopH, stopM) {
+  constructor(timerID, startH, startM, stopH, stopM ) {
+
+    this.timerID = timerID
 
     this.stopH = stopH,
     this.stopM = stopM,
