@@ -1,0 +1,25 @@
+class {
+    onCreate() {
+        this.state = {
+            count: 0
+        };
+    }
+
+    onMount() {
+        console.log("Mounted in the browser!");
+    }
+
+    increment() {
+        this.state.count++;
+    }
+}
+
+<div class="box">
+    <div class="columns is-desktop">
+        <div#col0 class="column"> <HUD-CELL-1 admin = input.admin></HUD-CELL-1> </div>
+        <div#col1 class="column"> <HUD-CELL-2 admin = input.admin></HUD-CELL-2> </div>
+    </div>
+    <div class="">
+      <sensor-list deviceOBJ = input.deviceOBJ></sensor-list>
+    </div>
+</div>

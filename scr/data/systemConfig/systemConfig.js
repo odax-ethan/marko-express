@@ -1,19 +1,29 @@
-exports.systemSETTINGS = {
+exports.systemConfig = {
     opperationName : "GROW338",
-    timerTESTrate: 150,
+    timerTESTrate: 3000,
+    admin:"andrew",
     nodes: [
-    {  id: "A",
+    {  id: "tent1",
        portName: "COM3",
-       nodeName: "node1"
-     }
+       nodeName: "tent1"
+     },
+     {  id: "tent2",
+        portName: "COM4",
+        nodeName: "tent2"
+      },
+      {  id: "room",
+         portName: "COM5",
+         nodeName: "room"
+       },
      ], // list of node for generation
     devices: [
-      { deviceID: "red", deviceTYPE:"led", devicePIN: 13, node:"node1"},
-      { deviceID: "trigger", deviceTYPE:"button", devicePIN: 3, node:"node1" },
-      { deviceID: "fan1", deviceTYPE:"relay", devicePIN: 7, node:"node1" },
-      { deviceID: "sensor1", deviceTYPE:"thermometer", devicePIN: 6, node:"node1", controller: "DS18B20" }
+      { deviceID: "sensor1", deviceTYPE:"thermometer", devicePIN: 6, deviceNODE:"tent1", controller: "DS18B20" },
+      { deviceID: "sensor2", deviceTYPE:"thermometer", devicePIN: 7, deviceNODE:"tent1", controller: "DS18B20" },
+      { deviceID: "sensor3", deviceTYPE:"thermometer", devicePIN: 6, deviceNODE:"tent2", controller: "DS18B20" },
+      { deviceID: "sensor4", deviceTYPE:"thermometer", devicePIN: 7, deviceNODE:"tent2", controller: "DS18B20" },
+      { deviceID: "sensor5", deviceTYPE:"thermometer", devicePIN: 6, deviceNODE:"room", controller: "DS18B20" },
+      { deviceID: "sensor6", deviceTYPE:"thermometer", devicePIN: 7, deviceNODE:"room", controller: "DS18B20" },
     ],
     timers: [
-      {timmerID: 0, deviceID: 'fan1', startH : 12, startM: 30, stopH: 5, stopM:30}
     ] // list of all devices in the system
 } //end of entire object

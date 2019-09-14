@@ -10,10 +10,10 @@ const lassoWare = require('lasso/middleware');
 
 const indexTemplate = require('./scr/template/index.marko'); // marko base template
 const systemConfig = require(__dirname +'/scr/data/systemConfig/systemConfig'); //cortex systemConfig
-const {System} = require(__dirname +'/scr/core/core-0-0-2.js'); //cortex support components
+// const {System} = require(__dirname +'/scr/core/core-0-0-3.js'); //cortex support components
 
 
-const system = new System(systemConfig)
+// const system = new System(systemConfig)
 const systemIP  = ip.address();
 const hostIP = '0.0.0.0';
 const port = 8080;
@@ -39,8 +39,8 @@ app.use(lassoWare.serveStatic());
 
 app.get('/', function (req, res) {
     res.marko(indexTemplate, {
-        name: 'Frank',
-        colors: ['red', 'green', 'blue']
+        deviceOBJ: systemConfig.systemConfig.devices,
+        admin: systemConfig.systemConfig.admin,
     });
 });
 
@@ -51,152 +51,15 @@ const systemSERVER = app.listen(port, hostIP, function () {
     }
 });
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-var ledSTATE = null
-var sensorSTATE = null
-
-const nodes = systemConfig.systemSETTINGS.nodes
-const deviceBank = systemConfig.systemSETTINGS.devices
-let nodeIDs = []
-let nodeCarrier = []
-let nodeMAX = 3
-let deviceLIST = []  // list of all devices parsed for used in the client
-
-
-for (var i = 0; i < nodes.length; i++) {
-  nodeIDs.push(nodes[i].nodeName)
-}
-console.log(nodeIDs);
-console.log(deviceBank);
-// console.log(nodeIDs[0]);
-let ledARRAY = []
-for (var i = 0; i < deviceBank.length; i++) {
-    let caseName = deviceBank[i].nodeName
-    if (caseName = nodeIDs[0]) {
-      if (deviceBank[i].deviceTYPE === 'led') {
-        console.log('its an led');
-        deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
-        ledARRAY.push(deviceBank[i].devicePIN)
-      }else if (deviceBank[i].deviceTYPE === 'relay') {
-        deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
-      }else if (deviceBank[i].deviceTYPE === 'thermometer') {
-        deviceLIST.push({id:deviceBank[i].deviceID, type:deviceBank[i].deviceTYPE})
-        // console.log('its an Thermometer');
-      }else if (deviceBank[i].deviceTYPE === 'button') {
-        // console.log('its an button');
-      }
-    }
-
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-
 const io = ioBASE(systemSERVER) // create socket.io sever systems
 io.on('connection', function (socket) {
          console.log("client has connected");
 
-         ledEmitter.on('led-update', (x) => {
-           // console.log(`led state is ${x}`);
-           socket.emit('ledSTATE',  x );
-         })
+              io.emit('stateUpdate', [{deviceID: "sensor1" ,value:1},{deviceID: "sensor2" ,value:2},{deviceID: "sensor3" ,value:3}, {deviceID: "sensor4" ,value:4},{deviceID: "sensor5" ,value:5}, {deviceID: "sensor6" ,value:6}]);
 
-         sensorEmitter.on('sensor-update', (x) => {
-           // console.log(`sensor state is ${x}`);
-           socket.emit('sensorSTATE',  x );
-         })
-
-         //send device listen
-         socket.emit('deviceLIST', deviceLIST )
 
 
          socket.on('disconnect', function(){
             console.log('user disconnected');
          });
 });
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-
-var board = new five.Board({
-  port: "COM6"
-});
-
-// let testTimer = new Timer(20,4,5,12)
-// let now = new CurrentDate()
-//
-// console.log(now.timeOBJ());
-// testTimer.test(now.timeOBJ())
-
-
-// The board's pins will not be accessible until
-// the board has reported that it is ready
-board.on("ready", function() {
-
-
-  // Create a standard `led` component instance
-  var ledTEST = new five.Leds(ledARRAY);
-
-
-
- //
- //  this.repl.inject({
- //   // Allow limited on/off control access to the
- //   // Led instance from the REPL.
- //   on: function() {
- //     ledTEST.on();
- //     ledEmitter.emit('led-on')
- //   },
- //   off: function() {
- //     ledTEST.off();
- //     ledEmitter.emit('led-off')
- //   }
- // });
-
-
- var thermometer = new five.Thermometer({
-   controller: "DS18B20",
-   pin: 6,
-   freq: 15000
- });
-
- thermometer.on("change", function() {
-   // console.log(this.celsius + "°C");
-
-   sensorEmitter.emit('change', this.celsius);
-   // console.log("0x" + this.address.toString(16));
- });
-
-
-
-});
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-class MyEmitter extends EventEmitter {}
-
-const ledEmitter = new MyEmitter();
-ledEmitter.on('led-on', () => {
-  console.log('led state is on');
-  ledSTATE = 1
-  ledEmitter.emit('led-update', ledSTATE)
-})
-ledEmitter.on('led-off', () => {
-  console.log('led state is off');
-  ledSTATE = 0
-  ledEmitter.emit('led-update', ledSTATE)
-})
-
-const sensorEmitter = new MyEmitter();
-sensorEmitter.on('change', (data) => {
-  let newDATA = data
-  sensorEmitter.emit('sensor-update', newDATA)
-})
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////

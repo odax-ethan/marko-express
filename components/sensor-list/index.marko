@@ -1,0 +1,74 @@
+<div class="box">
+
+    <if(input.deviceOBJ.length)>
+    <ul>
+      <for|device| of=input.deviceOBJ>
+        <li key = device.deviceID >
+
+          <article class="media box">
+            <figure class="media-left">
+              <p>
+                <nav class="level">
+                  <div class="level-item has-text-centered">
+                    <div>
+                      <p class="heading">Current Reading</p>
+                      <p class="title"><span id=device.deviceID ></span>°C</p>
+                    </div>
+                  </div>
+                </nav>
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>${device.deviceID}</strong> <small>on the ${device.deviceNODE} node</small> <small>@ pin ${device.devicePIN}</small>
+                  <br>
+                </p>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fas fa-temperature-low"></i></span>
+
+                  </a>
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fas fa-microchip"></i></span>
+                  </a>
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fas fa-database"></i></span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+            <div class="media-right">
+              <!-- <button class="delete"></button> -->
+            </div>
+          </article>
+          <br/>
+          <!-- ${input.deviceOBJ} -->
+        </li>
+      </for>
+    </ul>
+    </if>
+    <else>
+    <div>No deviceOBJ!</div>
+    </else>
+</div>
+
+<script>
+ var socket = io();
+
+
+
+ socket.on("stateUpdate", function (data) {
+
+    for (var i = 0; i < data.length; i++) {
+      document.getElementById(data[i].deviceID).innerText = data[i].value
+
+    }
+
+  });
+
+
+
+</script>
