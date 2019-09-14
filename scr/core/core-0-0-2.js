@@ -190,24 +190,15 @@ class System{
 
 
 }
-//
-// class Led extends System {
-//   constructor() {
-//
-//   }
-//
-//   fish(){
-//     console.log("thats a fish");
-//   }
-// }
 
+class Led extends System {
+  constructor() {
 
+  }
 
+  fish(){
+    console.log("thats a fish");
+  }
+}
 
-
-
-
-
-
-
-module.exports = {System, CurrentDate, Timer}
+module.exports = {System, Led}
