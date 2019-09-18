@@ -14,12 +14,12 @@ class {
     }
 }
 
-<div class="box">
+<div class="box ">
     <div class="columns is-desktop">
-        <div#col0 class="column"> <HUD-CELL-1 admin = input.admin></HUD-CELL-1> </div>
+        <!-- <div#col0 class="column"> <HUD-CELL-1 admin = input.admin></HUD-CELL-1> </div> -->
         <div#col1 class="column"> <HUD-CELL-2 admin = input.admin></HUD-CELL-2> </div>
     </div>
     <div class="">
-      <sensor-list deviceOBJ = input.deviceOBJ></sensor-list>
+      <sensor-list deviceOBJ = input.deviceOBJ initData = input.initData></sensor-list>
     </div>
 </div>

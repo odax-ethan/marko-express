@@ -12,7 +12,8 @@
                   <div class="level-item has-text-centered">
                     <div>
                       <p class="heading">Current Reading</p>
-                      <p class="title"><span id=device.deviceID ></span>°C</p>
+                      <!-- <p class="title"><span id=device.deviceID ></span>°C</p> -->
+                      <p class="title"><span id=device.deviceID ></span>°F</p>
                     </div>
                   </div>
                 </nav>
@@ -62,13 +63,28 @@
 
  socket.on("stateUpdate", function (data) {
 
-    for (var i = 0; i < data.length; i++) {
-      document.getElementById(data[i].deviceID).innerText = data[i].value
+  document.getElementById(data.deviceID).innerText = data.value
 
-    }
+//  console.log(data)
+
 
   });
 
 
+  socket.on("initData", function (data) {
+
+   document.getElementById(data.deviceID).innerText = data.value
+   //onsole.log(data)
+
+
+   });
+
+   socket.on("systemStatus", function (data) {
+
+    document.getElementById("systemStatus").innerText = data
+    console.log(data)
+
+
+    });
 
 </script>

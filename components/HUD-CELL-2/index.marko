@@ -1,1 +1,26 @@
-<p> hello ${input.admin} </p>
+
+
+<section class="hero is-small is-primary is-bold box">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+       hello ${input.admin}
+      </h1>
+      <h2#systemStatus class="subtitle">
+      </h2>
+    </div>
+  </div>
+</section>
+
+<script>
+ var socket = io();
+
+   socket.on("systemStatus", function (data) {
+
+    document.getElementById("systemStatus").innerText = data
+    console.log(data)
+
+
+    });
+
+</script>
