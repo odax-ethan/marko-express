@@ -109,6 +109,20 @@ io.on('connection', function (socket) {
 
          socket.on('disconnect', function(){
             console.log('user disconnected');
+
+            statusEmitter.removeListener('systemStatus', mockStatus)
+
+            statusEmitter.removeListener('systemStatus', (x) => {
+                socket.emit('systemStatus',  x );
+            })
+
+            sensorEmitter.removeListener('sensor-socket-update', (x) => {
+              // console.log(`sensor state is ${x}`);
+              socket.emit('stateUpdate',  x );
+              // console.log('data to sockets: ' + x);
+            })
+
+             // rr.removeListener("refresh-"+boardname, refreshHandler);
          });
 
 });
